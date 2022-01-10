@@ -12,13 +12,14 @@ def minOperations(n):
         Return:
             the fewest number of operations needed to result in n H characters
     """
-    suma = 0
-    if n <= 1:
-        return suma
-    for i in range(2, int(math.sqrt(n) + 1)):
-        while n % i == 0:
-            suma += i
-            n = n // i
-    if n > 1:
-        suma += n
-    return suma
+    if n < 2:
+        return 0
+    factor_list = []
+    i = 1
+    while n != 1:
+        i += 1
+        if n % i == 0:
+            while n % i == 0:
+                n /= i
+                factor_list.append(i)
+    return sum(factor_list)
